@@ -1,0 +1,217 @@
+{
+  "meta": {
+    "definitions": {
+      "flagged": "a draft with at least one flag",
+      "true_positive": "a seeded-defect draft with a flag of the labeled type on the labeled step",
+      "false_alarm": "a clean draft with any flag",
+      "precision": "true positives / flagged drafts",
+      "recall": "true positives / seeded-defect drafts"
+    },
+    "caveat": "n = 24 drafts, 12 seeded by the author. One draft moves recall by 8 points and precision by about 9. The 95% intervals are Wilson intervals. The defects, the rules and the seeded hard cases were all written by the same person, so these numbers describe this harness, not any real reviewer.",
+    "generated_at": "2026-11-21T14:01:02.831Z"
+  },
+  "counts": {
+    "drafts": 24,
+    "seeded_defects": 12,
+    "clean": 12,
+    "flagged": 11,
+    "true_positives": 9,
+    "false_negatives": 3,
+    "wrong_flag_only": 0,
+    "false_alarms": 2,
+    "true_negatives": 10,
+    "flags_total": 11
+  },
+  "metrics": {
+    "precision": {
+      "k": 9,
+      "n": 11,
+      "value": 0.818,
+      "ci95": [
+        0.523,
+        0.949
+      ]
+    },
+    "recall": {
+      "k": 9,
+      "n": 12,
+      "value": 0.75,
+      "ci95": [
+        0.468,
+        0.911
+      ]
+    },
+    "false_alarms": {
+      "count": 2,
+      "of_clean": 12,
+      "rate": 0.167
+    }
+  },
+  "by_type": {
+    "A": {
+      "defective": 6,
+      "caught": 5,
+      "k": 5,
+      "n": 6,
+      "value": 0.833,
+      "ci95": [
+        0.436,
+        0.97
+      ]
+    },
+    "B": {
+      "defective": 6,
+      "caught": 4,
+      "k": 4,
+      "n": 6,
+      "value": 0.667,
+      "ci95": [
+        0.3,
+        0.903
+      ]
+    }
+  },
+  "by_visibility": {
+    "visible_in_draft": {
+      "defective": 9,
+      "caught": 9,
+      "k": 9,
+      "n": 9,
+      "value": 1,
+      "ci95": [
+        0.701,
+        1
+      ]
+    },
+    "needs_connected_system": {
+      "defective": 3,
+      "caught": 0,
+      "k": 0,
+      "n": 3,
+      "value": 0,
+      "ci95": [
+        0,
+        0.562
+      ]
+    }
+  },
+  "baselines": {
+    "flag_everything": {
+      "precision": 0.5,
+      "recall": 1,
+      "false_alarms": 12
+    },
+    "flag_nothing": {
+      "precision": null,
+      "recall": 0,
+      "false_alarms": 0
+    }
+  },
+  "cases": {
+    "caught": [
+      {
+        "workflow": "wf-02",
+        "type": "A",
+        "visibility": "visible_in_draft",
+        "flag": "wf-02-A-2"
+      },
+      {
+        "workflow": "wf-03",
+        "type": "A",
+        "visibility": "visible_in_draft",
+        "flag": "wf-03-A-3"
+      },
+      {
+        "workflow": "wf-05",
+        "type": "B",
+        "visibility": "visible_in_draft",
+        "flag": "wf-05-B-4"
+      },
+      {
+        "workflow": "wf-08",
+        "type": "A",
+        "visibility": "visible_in_draft",
+        "flag": "wf-08-A-2"
+      },
+      {
+        "workflow": "wf-10",
+        "type": "B",
+        "visibility": "visible_in_draft",
+        "flag": "wf-10-B-3"
+      },
+      {
+        "workflow": "wf-13",
+        "type": "A",
+        "visibility": "visible_in_draft",
+        "flag": "wf-13-A-3"
+      },
+      {
+        "workflow": "wf-15",
+        "type": "B",
+        "visibility": "visible_in_draft",
+        "flag": "wf-15-B-4"
+      },
+      {
+        "workflow": "wf-18",
+        "type": "B",
+        "visibility": "visible_in_draft",
+        "flag": "wf-18-B-3"
+      },
+      {
+        "workflow": "wf-21",
+        "type": "A",
+        "visibility": "visible_in_draft",
+        "flag": "wf-21-A-3"
+      }
+    ],
+    "missed": [
+      {
+        "workflow": "wf-12",
+        "title": "On-call group membership",
+        "type": "B",
+        "visibility": "needs_connected_system",
+        "flagged_anyway": false,
+        "hidden_context": "In the connected Okta tenant the group platform-oncall is nested inside prod-admins, so members inherit production admin rights. The draft shows only the group name."
+      },
+      {
+        "workflow": "wf-17",
+        "title": "Vendor remittance profile change",
+        "type": "A",
+        "visibility": "needs_connected_system",
+        "flagged_anyway": false,
+        "hidden_context": "PayBridge is the vendor payments portal and moves money, so it is a finance system. The reviewer's system inventory does not list it, and the draft shows only the product name."
+      },
+      {
+        "workflow": "wf-19",
+        "title": "Expense policy reviewer role",
+        "type": "B",
+        "visibility": "needs_connected_system",
+        "flagged_anyway": false,
+        "hidden_context": "In the connected Expensify policy the custom role Auditor-Plus includes the Manage Policy permission, which is policy-admin. The draft shows only the role name."
+      }
+    ],
+    "false_alarms": [
+      {
+        "workflow": "wf-07",
+        "title": "Forgotten password or account lockout",
+        "rules": [
+          "A"
+        ],
+        "why_clean": "Clean. This is a pre-approved standard change (policy IT-STD-04): the SOP asks for identity verification, not approval. A rule that demands an approval step before every identity write cannot know that."
+      },
+      {
+        "workflow": "wf-20",
+        "title": "External auditor read-only log access",
+        "rules": [
+          "B"
+        ],
+        "why_clean": "Clean. Okta's Read-only Administrator role can view logs and reports but change nothing. The scope is narrower than admin even though the word appears. A keyword rule cannot tell."
+      }
+    ]
+  },
+  "failure_mode": {
+    "title": "Defects that are invisible without the connected system",
+    "text": "The reviewer sees only the draft. Three seeded defects look fine on the page: a group called platform-oncall that is nested under a production-admin group in the directory, a custom expense role called Auditor-Plus that carries policy-admin rights, and a vendor-payments portal the rules do not know is a finance system. Reading the draft cannot reveal any of them. Catching them needs a live lookup of group nesting, role definitions and the system inventory, which this static reviewer deliberately does not have. A keyword rule on action text might catch the payments portal case. It could not catch the other two, and every extra keyword rule adds false alarms like the two already seen.",
+    "every_miss_is_this_mode": true
+  }
+}

@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Approval gap check</title>
+  <meta name="description" content="Can a reviewer catch a missing approval or an over-broad permission in an agent-drafted IT workflow? 24 synthetic drafts, 12 with a planted defect, scored.">
+  <meta name="color-scheme" content="light dark">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect x='4' y='4' width='24' height='24' rx='3' fill='none' stroke='%232B4BC4' stroke-width='3' stroke-dasharray='5 3.5'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <a class="skip" href="#sheet">Skip to the draft</a>
+
+  <header class="masthead">
+    <div class="masthead-text">
+      <h1>Approval gap check</h1>
+      <p class="lede">An agent drafts the workflow for an IT request. Would a reviewer notice a missing approval, or a permission that is too broad?<span class="wide-only"> A rule-based reviewer checks 24 synthetic drafts, 12 of which carry a planted defect, and gets scored.</span></p>
+    </div>
+    <div class="truth-control">
+      <button type="button" class="switch" id="truth-switch" role="switch" aria-checked="false" aria-describedby="truth-help">
+        <span class="track" aria-hidden="true"><span class="thumb"></span></span>
+        <span>Show seeded truth</span>
+      </button>
+      <p id="truth-help" class="help">Reveals planted defects and outcomes.</p>
+    </div>
+  </header>
+
+  <main class="layout" id="main">
+    <button type="button" class="scorebar" id="scorebar" aria-label="Scores: loading. Select to jump to the scorecard."></button>
+
+    <aside class="score" id="score" aria-labelledby="score-h">
+      <h2 id="score-h">Scorecard</h2>
+      <p class="loading">Loading scores…</p>
+    </aside>
+
+    <article class="sheet" id="sheet" aria-live="polite" tabindex="-1">
+      <p class="loading">Loading the draft…</p>
+    </article>
+
+    <nav class="ledger" aria-labelledby="ledger-h">
+      <div class="ledger-head">
+        <h2 id="ledger-h">Drafts</h2>
+        <div class="filter" id="filter" role="group" aria-label="Filter drafts"></div>
+      </div>
+      <ol class="rows" id="rows"></ol>
+    </nav>
+  </main>
+
+  <footer class="foot">
+    <p class="disclaimer">Synthetic data. Not Serval's product. Results are not Serval's review rates.</p>
+    <p>Nothing in this page calls a model. It loads six static JSON files from this site. The one-line reasons were written ahead of time by a small open model (qwen2.5:7b-instruct) running locally through Ollama.</p>
+    <p><a href="https://github.com/Siddharth-14/approval-gap-check">Source, data and method on GitHub</a></p>
+  </footer>
+
+  <noscript><p class="nojs">This page needs JavaScript to show the drafts. The data is in plain JSON under /data/.</p></noscript>
+  <script src="app.js" defer></script>
+</body>
+</html>

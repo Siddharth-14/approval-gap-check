@@ -1,0 +1,358 @@
+{
+  "meta": {
+    "reviewer": "rules v1 (A: approval before write on identity/finance, B: scope narrower than admin)",
+    "reasons": "precomputed one-line reasons, written locally by qwen2.5:7b-instruct via Ollama; none are computed in the browser",
+    "inputs": [
+      "data/drafts.json",
+      "data/rules.json"
+    ],
+    "generated_at": "2026-11-21T14:00:29.686Z",
+    "seconds": 11
+  },
+  "results": [
+    {
+      "workflow": "wf-01",
+      "flagged": false,
+      "flags": []
+    },
+    {
+      "workflow": "wf-02",
+      "flagged": true,
+      "flags": [
+        {
+          "id": "wf-02-A-2",
+          "workflow": "wf-02",
+          "rule": "A",
+          "rule_name": "Write without prior approval",
+          "step": 2,
+          "covers_steps": [
+            2,
+            3
+          ],
+          "system": "Google Workspace",
+          "system_class": "identity",
+          "evidence": {
+            "action": "Create Google Workspace account",
+            "scope": "role: Standard user",
+            "matched": null
+          },
+          "reason": "Google Workspace account creation with standard user role skips approval, potentially exposing sensitive data.",
+          "reason_source": "ollama:qwen2.5:7b-instruct"
+        }
+      ]
+    },
+    {
+      "workflow": "wf-03",
+      "flagged": true,
+      "flags": [
+        {
+          "id": "wf-03-A-3",
+          "workflow": "wf-03",
+          "rule": "A",
+          "rule_name": "Write without prior approval",
+          "step": 3,
+          "covers_steps": [
+            3,
+            4
+          ],
+          "system": "Okta",
+          "system_class": "identity",
+          "evidence": {
+            "action": "Reset all MFA factors for user in Okta",
+            "scope": "all MFA factors, this user only",
+            "matched": null
+          },
+          "reason": "This step involves resetting MFA in Okta for a user, which could expose the account to security risks if not approved.",
+          "reason_source": "ollama:qwen2.5:7b-instruct"
+        }
+      ]
+    },
+    {
+      "workflow": "wf-04",
+      "flagged": false,
+      "flags": []
+    },
+    {
+      "workflow": "wf-05",
+      "flagged": true,
+      "flags": [
+        {
+          "id": "wf-05-B-4",
+          "workflow": "wf-05",
+          "rule": "B",
+          "rule_name": "Scope not narrower than admin",
+          "step": 4,
+          "covers_steps": [
+            4
+          ],
+          "system": "Figma",
+          "system_class": null,
+          "evidence": {
+            "action": "Set Figma role to 'Org Admin'",
+            "scope": "role: Org Admin (all teams and billing)",
+            "matched": "Admin"
+          },
+          "reason": "For Figma, setting the role to \"Org Admin\" could grant excessive permissions; ensure the role matches the task requirements.",
+          "reason_source": "ollama:qwen2.5:7b-instruct"
+        }
+      ]
+    },
+    {
+      "workflow": "wf-06",
+      "flagged": false,
+      "flags": []
+    },
+    {
+      "workflow": "wf-07",
+      "flagged": true,
+      "flags": [
+        {
+          "id": "wf-07-A-2",
+          "workflow": "wf-07",
+          "rule": "A",
+          "rule_name": "Write without prior approval",
+          "step": 2,
+          "covers_steps": [
+            2
+          ],
+          "system": "Okta",
+          "system_class": "identity",
+          "evidence": {
+            "action": "Reset password or clear lockout",
+            "scope": "this user only",
+            "matched": null
+          },
+          "reason": "This step involves changing Okta's identity system; direct password resets or lockout clears could compromise security.",
+          "reason_source": "ollama:qwen2.5:7b-instruct"
+        }
+      ]
+    },
+    {
+      "workflow": "wf-08",
+      "flagged": true,
+      "flags": [
+        {
+          "id": "wf-08-A-2",
+          "workflow": "wf-08",
+          "rule": "A",
+          "rule_name": "Write without prior approval",
+          "step": 2,
+          "covers_steps": [
+            2,
+            3
+          ],
+          "system": "NetSuite",
+          "system_class": "finance",
+          "evidence": {
+            "action": "Assign AP Clerk role to user",
+            "scope": "role: AP Clerk (enter and view vendor bills only)",
+            "matched": null
+          },
+          "reason": "This step involves assigning a finance system role; improper approval could lead to unauthorized access to vendor bills.",
+          "reason_source": "ollama:qwen2.5:7b-instruct"
+        }
+      ]
+    },
+    {
+      "workflow": "wf-09",
+      "flagged": false,
+      "flags": []
+    },
+    {
+      "workflow": "wf-10",
+      "flagged": true,
+      "flags": [
+        {
+          "id": "wf-10-B-3",
+          "workflow": "wf-10",
+          "rule": "B",
+          "rule_name": "Scope not narrower than admin",
+          "step": 3,
+          "covers_steps": [
+            3
+          ],
+          "system": "AWS IAM Identity Center",
+          "system_class": "identity",
+          "evidence": {
+            "action": "Assign 'AdministratorAccess' permission set",
+            "scope": "permission set AdministratorAccess on account sandbox-dev",
+            "matched": "Admin"
+          },
+          "reason": "AWS IAM Identity Center, AdministratorAccess permission set could grant excessive admin-level access in the sandbox-dev account.",
+          "reason_source": "ollama:qwen2.5:7b-instruct"
+        }
+      ]
+    },
+    {
+      "workflow": "wf-11",
+      "flagged": false,
+      "flags": []
+    },
+    {
+      "workflow": "wf-12",
+      "flagged": false,
+      "flags": []
+    },
+    {
+      "workflow": "wf-13",
+      "flagged": true,
+      "flags": [
+        {
+          "id": "wf-13-A-3",
+          "workflow": "wf-13",
+          "rule": "A",
+          "rule_name": "Write without prior approval",
+          "step": 3,
+          "covers_steps": [
+            3,
+            4
+          ],
+          "system": "CorpCard Portal",
+          "system_class": "finance",
+          "evidence": {
+            "action": "Raise monthly limit to approved amount",
+            "scope": "monthly limit on this one card, up to the approved amount",
+            "matched": null
+          },
+          "reason": "This step changes a finance system without prior approval; could lead to unauthorized limit increases.",
+          "reason_source": "ollama:qwen2.5:7b-instruct"
+        }
+      ]
+    },
+    {
+      "workflow": "wf-14",
+      "flagged": false,
+      "flags": []
+    },
+    {
+      "workflow": "wf-15",
+      "flagged": true,
+      "flags": [
+        {
+          "id": "wf-15-B-4",
+          "workflow": "wf-15",
+          "rule": "B",
+          "rule_name": "Scope not narrower than admin",
+          "step": 4,
+          "covers_steps": [
+            4
+          ],
+          "system": "GitHub",
+          "system_class": null,
+          "evidence": {
+            "action": "Grant 'Admin' permission on all repositories",
+            "scope": "Admin on all repositories in the organization",
+            "matched": "Admin"
+          },
+          "reason": "GitHub, Admin permission could expose sensitive data or allow full control over repositories unintentionally.",
+          "reason_source": "ollama:qwen2.5:7b-instruct"
+        }
+      ]
+    },
+    {
+      "workflow": "wf-16",
+      "flagged": false,
+      "flags": []
+    },
+    {
+      "workflow": "wf-17",
+      "flagged": false,
+      "flags": []
+    },
+    {
+      "workflow": "wf-18",
+      "flagged": true,
+      "flags": [
+        {
+          "id": "wf-18-B-3",
+          "workflow": "wf-18",
+          "rule": "B",
+          "rule_name": "Scope not narrower than admin",
+          "step": 3,
+          "covers_steps": [
+            3
+          ],
+          "system": "Jira",
+          "system_class": null,
+          "evidence": {
+            "action": "Add user to Administrators role on all projects",
+            "scope": "Administrators role, all Jira projects",
+            "matched": "Admin"
+          },
+          "reason": "In Jira, adding a user to the Administrators role could grant excessive permissions beyond Step 3's intent.",
+          "reason_source": "ollama:qwen2.5:7b-instruct"
+        }
+      ]
+    },
+    {
+      "workflow": "wf-19",
+      "flagged": false,
+      "flags": []
+    },
+    {
+      "workflow": "wf-20",
+      "flagged": true,
+      "flags": [
+        {
+          "id": "wf-20-B-3",
+          "workflow": "wf-20",
+          "rule": "B",
+          "rule_name": "Scope not narrower than admin",
+          "step": 3,
+          "covers_steps": [
+            3
+          ],
+          "system": "Okta",
+          "system_class": "identity",
+          "evidence": {
+            "action": "Assign Read-only Administrator role",
+            "scope": "Read-only Administrator (view system log and reports only)",
+            "matched": "Admin"
+          },
+          "reason": "In Okta, assigning \"Read-only Administrator\" could grant more access than needed; ensure it’s precisely \"Read-only Log Access\" to avoid admin-level permissions.",
+          "reason_source": "ollama:qwen2.5:7b-instruct"
+        }
+      ]
+    },
+    {
+      "workflow": "wf-21",
+      "flagged": true,
+      "flags": [
+        {
+          "id": "wf-21-A-3",
+          "workflow": "wf-21",
+          "rule": "A",
+          "rule_name": "Write without prior approval",
+          "step": 3,
+          "covers_steps": [
+            3
+          ],
+          "system": "Payroll Portal",
+          "system_class": "finance",
+          "evidence": {
+            "action": "Update direct-deposit account in Payroll Portal",
+            "scope": "direct-deposit account of this one employee",
+            "matched": null
+          },
+          "reason": "This step needs review as it involves updating the finance system Payroll Portal with direct-deposit info for one employee—incorrect changes could affect payroll.",
+          "reason_source": "ollama:qwen2.5:7b-instruct"
+        }
+      ]
+    },
+    {
+      "workflow": "wf-22",
+      "flagged": false,
+      "flags": []
+    },
+    {
+      "workflow": "wf-23",
+      "flagged": false,
+      "flags": []
+    },
+    {
+      "workflow": "wf-24",
+      "flagged": false,
+      "flags": []
+    }
+  ]
+}

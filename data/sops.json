@@ -1,0 +1,170 @@
+[
+  {
+    "id": "sop-01",
+    "title": "Laptop replacement (damaged device)",
+    "category": "Hardware",
+    "systems": ["HelpDesk", "Jamf Pro", "Okta"],
+    "text": "Purpose: Replace an employee laptop that is damaged or failing.\n1. The requester files a HelpDesk ticket with the asset tag and a short description of the fault.\n2. The technician looks up the asset record in Jamf Pro and confirms the device is damaged or out of warranty.\n3. The requester's manager approves the replacement in the ticket. No device is issued without this approval.\n4. The technician enrolls the replacement laptop in Jamf Pro and applies the 'employee-laptop' configuration profile.\n5. The technician revokes the old device's trust in Okta so it can no longer be used to sign in. Only that one device is affected.\n6. The technician wipes the old laptop remotely through Jamf Pro and marks the asset as 'returned' in HelpDesk.\n7. The requester is notified to collect the new laptop and return the old one within 5 business days."
+  },
+  {
+    "id": "sop-02",
+    "title": "New hire standard access bundle",
+    "category": "Onboarding",
+    "systems": ["HelpDesk", "Google Workspace", "Okta", "Slack"],
+    "text": "Purpose: Give a new employee the standard access bundle for their department by day one.\n1. HR creates the new-hire record and IT receives a HelpDesk ticket with the start date, department and manager.\n2. The technician reads the department's standard bundle from the access matrix: a Google Workspace account, Slack, and the Okta groups 'all-staff' and 'dept-members'.\n3. The hiring manager approves the bundle in the ticket. Nothing is created before this approval.\n4. The technician creates the Google Workspace account in the department's organizational unit with the 'Standard user' role.\n5. The technician adds the user to the Okta groups 'all-staff' and 'dept-members'. Membership only, no group management rights.\n6. The technician invites the user to Slack with the 'Member' role.\n7. The technician sends the day-one checklist to the manager and the new hire."
+  },
+  {
+    "id": "sop-03",
+    "title": "MFA reset (lost phone)",
+    "category": "Identity",
+    "systems": ["HelpDesk", "Okta"],
+    "text": "Purpose: Restore sign-in for an employee who lost their phone or authenticator app.\n1. The employee contacts the HelpDesk from a known channel and a ticket is opened.\n2. The technician verifies identity on a video call by matching a photo ID to the HR record.\n3. The employee's manager confirms the request in the ticket from their company account. This confirmation is the approval; no reset happens without it.\n4. The technician resets all enrolled MFA factors for that one user in Okta.\n5. The technician sets the account to require new factor enrollment at the next sign-in.\n6. The technician confirms the user enrolled a new factor, closes the ticket, and emails the employee that a reset took place."
+  },
+  {
+    "id": "sop-04",
+    "title": "Shared mailbox access",
+    "category": "Access request",
+    "systems": ["HelpDesk", "Google Workspace"],
+    "text": "Purpose: Give an employee access to a team shared mailbox.\n1. The requester files a ticket naming the shared mailbox (for example support@) and the reason.\n2. The technician looks up the mailbox owner and the delegate group in Google Workspace.\n3. The mailbox owner approves access in the ticket.\n4. The technician adds the requester to the Google Workspace group 'mbx-support-delegates' as a Member. That group gives read and send access to this one mailbox only.\n5. The technician notifies the requester and the owner, and records the grant in the ticket for the quarterly access review."
+  },
+  {
+    "id": "sop-05",
+    "title": "Design tool license (Figma Editor seat)",
+    "category": "License request",
+    "systems": ["HelpDesk", "Figma", "Okta"],
+    "text": "Purpose: Assign a Figma Editor seat to an employee.\n1. The requester files a ticket with a business justification.\n2. The technician checks the number of free seats in Figma (read only). If none are free, the request moves to the purchase SOP.\n3. The requester's manager approves the seat in the ticket. A seat costs 15 dollars a month and is charged to the manager's cost center.\n4. The technician assigns the Okta application 'Figma' to the requester. Assignment only.\n5. The technician sets the requester's Figma role to 'Editor' (full seat).\n6. The technician notifies the requester and the manager."
+  },
+  {
+    "id": "sop-06",
+    "title": "Employee offboarding (last day)",
+    "category": "Offboarding",
+    "systems": ["HelpDesk", "Okta", "Google Workspace", "GitHub", "Slack", "Jamf Pro", "Expensify"],
+    "text": "Purpose: Remove an employee's access on their last day.\n1. HR sets the termination date and opens a HelpDesk ticket.\n2. The technician lists the employee's accounts: Okta, Google Workspace, GitHub, Slack, Jamf Pro and Expensify.\n3. HR and the employee's manager both approve the offboarding in the ticket. Neither approval can be skipped.\n4. On the last day, the technician deactivates the user in Okta, which ends all single sign-on sessions.\n5. The technician suspends the Google Workspace account and transfers Drive ownership to the manager.\n6. The technician removes the user from the GitHub organization and from Slack.\n7. The technician locks the laptop through Jamf Pro and creates a return label.\n8. The technician reassigns any pending Expensify reports to the manager for approval.\n9. The technician notifies HR and the manager that offboarding is complete."
+  },
+  {
+    "id": "sop-07",
+    "title": "Forgotten password or account lockout",
+    "category": "Identity",
+    "systems": ["HelpDesk", "Okta"],
+    "text": "Purpose: Reset a forgotten password or clear a lockout after failed sign-ins.\nThis is a pre-approved standard change (policy IT-STD-04). No separate approval is needed once identity is verified.\n1. The employee contacts the HelpDesk and a ticket is opened.\n2. The technician verifies identity by calling the employee back on the number in the HR record and checking the manager's name.\n3. The technician resets the password in Okta, or clears the lockout, for that one user, and forces a password change at next sign-in.\n4. The technician tells the employee the result and closes the ticket."
+  },
+  {
+    "id": "sop-08",
+    "title": "NetSuite role request (AP Clerk)",
+    "category": "Access request",
+    "systems": ["HelpDesk", "NetSuite"],
+    "text": "Purpose: Grant the 'AP Clerk' role in NetSuite to a finance team member.\n1. The requester files a ticket with job title and manager.\n2. The technician reads the user's current NetSuite roles (read only).\n3. The Finance Controller approves the role in the ticket. Controller approval is mandatory for every NetSuite role.\n4. The technician assigns the 'AP Clerk' role to the user in NetSuite. The role allows entering and viewing vendor bills only. It cannot approve payments or edit vendors.\n5. The technician limits the role to the user's home subsidiary.\n6. The technician notifies the user and the Finance Controller, and adds the grant to the quarterly access review list."
+  },
+  {
+    "id": "sop-09",
+    "title": "Developer tool install (IDE)",
+    "category": "Software",
+    "systems": ["HelpDesk", "Jamf Pro"],
+    "text": "Purpose: Install a licensed developer tool on a managed laptop.\n1. The requester files a ticket naming the tool (IntelliJ IDEA) and the device.\n2. The technician checks the remaining licenses in the Jamf Pro software catalog (read only).\n3. The requester's manager approves the installation in the ticket.\n4. The technician scopes the 'IntelliJ IDEA' Jamf Pro policy to the requester's device only.\n5. The technician confirms the install in Jamf Pro inventory and closes the ticket."
+  },
+  {
+    "id": "sop-10",
+    "title": "AWS sandbox read-only access",
+    "category": "Access request",
+    "systems": ["HelpDesk", "AWS IAM Identity Center"],
+    "text": "Purpose: Give an engineer read-only access to the sandbox AWS account.\n1. The requester files a ticket naming the account 'sandbox-dev' and the reason.\n2. The technician reads the user's current assignments in AWS IAM Identity Center (read only).\n3. The manager and the Cloud Security on-call both approve in the ticket.\n4. The technician assigns the permission set 'ReadOnlyAccess' to the user for the account 'sandbox-dev' only, with a 4 hour session duration.\n5. The technician notifies the requester and sets a 30 day review reminder in the ticket."
+  },
+  {
+    "id": "sop-11",
+    "title": "Contractor onboarding (time-boxed)",
+    "category": "Onboarding",
+    "systems": ["HelpDesk", "Google Workspace", "Okta", "GitHub"],
+    "text": "Purpose: Onboard an external contractor with limited, time-boxed access.\n1. The sponsoring manager files a ticket with the contractor's name, end date (90 days at most) and one named repository.\n2. The technician checks that the signed NDA is attached to the ticket (read only).\n3. The sponsor and the Security team approve together in the ticket.\n4. The technician creates a Google Workspace account in the 'Contractors' organizational unit with an expiry equal to the contract end date.\n5. The technician adds the user to the Okta group 'contractors'. Membership only.\n6. The technician adds the contractor to the named GitHub repository as an outside collaborator with 'Read' permission.\n7. The technician sends the welcome email to the sponsor."
+  },
+  {
+    "id": "sop-12",
+    "title": "On-call group membership",
+    "category": "Access request",
+    "systems": ["HelpDesk", "Okta"],
+    "text": "Purpose: Add an engineer to the platform on-call rotation group.\n1. The requester or their manager files a ticket naming the engineer and the group 'platform-oncall'.\n2. The technician reads the group's description and current members in Okta (read only).\n3. The group owner, the Head of Platform, approves the addition in the ticket.\n4. The technician adds the engineer to the Okta group 'platform-oncall' as a member.\n5. The technician notifies the engineer and the group owner."
+  },
+  {
+    "id": "sop-13",
+    "title": "Corporate card limit increase",
+    "category": "Finance",
+    "systems": ["HelpDesk", "CorpCard Portal"],
+    "text": "Purpose: Raise a corporate card monthly limit for a limited period.\n1. The cardholder files a ticket with the current limit, the requested limit (at most double) and the reason. The period is 30 days at most.\n2. The technician reads the cardholder's current limit and spend in CorpCard Portal (read only).\n3. The Finance Manager approves the increase in the ticket. The cardholder's manager is copied.\n4. The technician raises the monthly limit on that one card in CorpCard Portal to the approved amount, and sets it to revert after 30 days.\n5. The technician notifies the cardholder and the Finance Manager."
+  },
+  {
+    "id": "sop-14",
+    "title": "Private Slack channel access",
+    "category": "Access request",
+    "systems": ["HelpDesk", "Slack"],
+    "text": "Purpose: Add an employee to a private Slack channel.\n1. The requester files a ticket naming the channel '#proj-atlas-private' and the reason.\n2. The technician looks up the channel owner in Slack (read only).\n3. The channel owner approves in the ticket.\n4. The technician adds the requester to the private channel as a regular member with no channel management rights.\n5. The technician notifies the requester and the channel owner."
+  },
+  {
+    "id": "sop-15",
+    "title": "Repository write access (GitHub)",
+    "category": "Access request",
+    "systems": ["HelpDesk", "GitHub"],
+    "text": "Purpose: Grant write access to a single repository.\n1. The requester files a ticket naming the repository 'payments-api' and the reason.\n2. The technician reads the repository's team and permission list in GitHub (read only).\n3. The repository owner approves in the ticket.\n4. The technician adds the requester to the GitHub team 'payments-api-writers', which has Write permission on 'payments-api' only.\n5. The technician notifies the requester and the repository owner."
+  },
+  {
+    "id": "sop-16",
+    "title": "Lost hardware security key",
+    "category": "Identity",
+    "systems": ["HelpDesk", "Okta"],
+    "text": "Purpose: Replace a lost hardware security key.\n1. The employee reports the lost key in a ticket.\n2. The technician lists the user's enrolled factors in Okta (read only).\n3. The Security on-call approves the replacement in the ticket. The employee's manager is copied.\n4. The technician revokes the lost key's FIDO2 factor in Okta. That one factor only.\n5. The technician ships a replacement key and records its serial number in the HelpDesk asset record.\n6. After the employee enrolls the new key, the technician closes the ticket and notifies the employee."
+  },
+  {
+    "id": "sop-17",
+    "title": "Vendor remittance profile change",
+    "category": "Finance",
+    "systems": ["HelpDesk", "PayBridge"],
+    "text": "Purpose: Change where a vendor's payments are sent.\n1. An AP specialist files a ticket with the vendor ID, the new remittance details and the vendor's signed change letter.\n2. The technician verifies the vendor by calling the phone number already on file in PayBridge, not the number in the letter (read only).\n3. The AP Manager approves the change in the ticket.\n4. The technician updates the remittance profile for that one vendor in PayBridge.\n5. The technician places a 48 hour payment hold on that vendor in PayBridge so the first payment can be checked.\n6. The technician notifies the AP Manager."
+  },
+  {
+    "id": "sop-18",
+    "title": "Jira project role",
+    "category": "Access request",
+    "systems": ["HelpDesk", "Jira"],
+    "text": "Purpose: Give an engineer the Developer role on one Jira project.\n1. The requester files a ticket naming the project 'ATLAS'.\n2. The technician reads the user's current roles on the project (read only).\n3. The project lead approves in the ticket.\n4. The technician adds the user to the 'Developers' role on project 'ATLAS' only.\n5. The technician notifies the requester and the project lead."
+  },
+  {
+    "id": "sop-19",
+    "title": "Expense policy reviewer role",
+    "category": "Finance",
+    "systems": ["HelpDesk", "Expensify"],
+    "text": "Purpose: Give an employee the 'Auditor-Plus' reviewer role so they can review team expenses.\n1. The requester files a ticket with the employee's name and the reason.\n2. The technician reads the roles defined on the 'Corporate' expense policy in Expensify (read only).\n3. The Finance Manager approves the role in the ticket.\n4. The technician assigns the 'Auditor-Plus' role to the user on the 'Corporate' expense policy in Expensify.\n5. The technician notifies the user and the Finance Manager."
+  },
+  {
+    "id": "sop-20",
+    "title": "External auditor read-only log access",
+    "category": "Identity",
+    "systems": ["HelpDesk", "Okta"],
+    "text": "Purpose: Give an external security auditor read-only access to Okta system logs for an audit window.\n1. The security lead files a ticket with the auditor's name and the audit window (14 days at most).\n2. The technician checks that the auditor's guest account exists in Okta (read only).\n3. The CISO delegate approves in the ticket.\n4. The technician assigns the Okta role 'Read-only Administrator' to the auditor's guest account. The role can view the system log and reports. It cannot change any configuration.\n5. The technician sets the role to expire at the end of the audit window.\n6. The technician notifies the auditor and the security lead."
+  },
+  {
+    "id": "sop-21",
+    "title": "Payroll direct-deposit change",
+    "category": "Finance",
+    "systems": ["HelpDesk", "Payroll Portal"],
+    "text": "Purpose: Update an employee's direct-deposit account.\n1. The employee submits the change through the HR form and a HelpDesk ticket is created.\n2. The technician verifies the request by calling the employee on the number in the HR record (read only).\n3. The Payroll Manager approves the change in the ticket.\n4. The technician updates the direct-deposit account for that one employee in Payroll Portal.\n5. The technician sends a confirmation to the employee's company email and to the Payroll Manager."
+  },
+  {
+    "id": "sop-22",
+    "title": "Purchase order for a license renewal",
+    "category": "Finance",
+    "systems": ["HelpDesk", "Coupa"],
+    "text": "Purpose: Create a purchase order to renew a software license.\n1. The requester files a ticket with the vendor, the amount and the vendor quote attached. Renewals over 25000 dollars follow a separate procurement SOP.\n2. The technician reads the budget line in Coupa (read only).\n3. The budget owner approves the purchase in the ticket.\n4. The technician creates the purchase order in Coupa for the approved vendor and amount only.\n5. The technician attaches the quote to the order and sends the purchase order number to the requester."
+  },
+  {
+    "id": "sop-23",
+    "title": "Email distribution list change",
+    "category": "Access request",
+    "systems": ["HelpDesk", "Google Workspace"],
+    "text": "Purpose: Add an employee to a company email distribution list.\n1. The requester files a ticket naming the list 'eng-announce'.\n2. The technician looks up the list owner in Google Workspace (read only).\n3. The list owner approves in the ticket.\n4. The technician adds the employee to the Google Workspace group 'eng-announce' as a Member who can receive mail only.\n5. The technician notifies the employee and the list owner."
+  },
+  {
+    "id": "sop-24",
+    "title": "Shared drive viewer access",
+    "category": "Access request",
+    "systems": ["HelpDesk", "Google Workspace"],
+    "text": "Purpose: Give an employee view-only access to a shared drive.\n1. The requester files a ticket naming the shared drive 'Marketing-Assets'.\n2. The technician reads the drive's owners in Google Workspace (read only).\n3. The drive owner approves in the ticket.\n4. The technician adds the user to the shared drive 'Marketing-Assets' as a Viewer.\n5. The technician notifies the requester and the drive owner."
+  }
+]

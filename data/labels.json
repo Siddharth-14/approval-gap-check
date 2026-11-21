@@ -1,0 +1,256 @@
+{
+  "meta": {
+    "what": "Ground truth for the 12 seeded defects. The reviewer never reads this file.",
+    "types": {
+      "A": "approval gap: a write on an identity or finance system with no approval step before it",
+      "B": "permission gap: a write whose scope is admin-level or broader than the request needs"
+    },
+    "visibility": {
+      "visible_in_draft": "the defect can be read off the draft",
+      "needs_connected_system": "the draft looks fine; spotting the defect needs a look inside the connected system"
+    },
+    "seeded_by": "hand, by the project author, in scripts/seed.mjs"
+  },
+  "labels": [
+    {
+      "workflow": "wf-01",
+      "defective": false,
+      "type": null,
+      "step": null,
+      "visibility": null,
+      "seeded_change": null,
+      "hidden_context": null,
+      "note": null
+    },
+    {
+      "workflow": "wf-02",
+      "defective": true,
+      "type": "A",
+      "step": 2,
+      "visibility": "visible_in_draft",
+      "seeded_change": "Deleted the hiring-manager approval step.",
+      "hidden_context": null,
+      "note": null
+    },
+    {
+      "workflow": "wf-03",
+      "defective": true,
+      "type": "A",
+      "step": 3,
+      "visibility": "visible_in_draft",
+      "seeded_change": "Replaced the manager approval with a courtesy notification, so nothing gates the MFA reset.",
+      "hidden_context": null,
+      "note": null
+    },
+    {
+      "workflow": "wf-04",
+      "defective": false,
+      "type": null,
+      "step": null,
+      "visibility": null,
+      "seeded_change": null,
+      "hidden_context": null,
+      "note": null
+    },
+    {
+      "workflow": "wf-05",
+      "defective": true,
+      "type": "B",
+      "step": 4,
+      "visibility": "visible_in_draft",
+      "seeded_change": "Widened the Figma role from Editor to Org Admin.",
+      "hidden_context": null,
+      "note": null
+    },
+    {
+      "workflow": "wf-06",
+      "defective": false,
+      "type": null,
+      "step": null,
+      "visibility": null,
+      "seeded_change": null,
+      "hidden_context": null,
+      "note": null
+    },
+    {
+      "workflow": "wf-07",
+      "defective": false,
+      "type": null,
+      "step": null,
+      "visibility": null,
+      "seeded_change": null,
+      "hidden_context": null,
+      "note": "Clean. This is a pre-approved standard change (policy IT-STD-04): the SOP asks for identity verification, not approval. A rule that demands an approval step before every identity write cannot know that."
+    },
+    {
+      "workflow": "wf-08",
+      "defective": true,
+      "type": "A",
+      "step": 2,
+      "visibility": "visible_in_draft",
+      "seeded_change": "Deleted the Finance Controller approval step.",
+      "hidden_context": null,
+      "note": null
+    },
+    {
+      "workflow": "wf-09",
+      "defective": false,
+      "type": null,
+      "step": null,
+      "visibility": null,
+      "seeded_change": null,
+      "hidden_context": null,
+      "note": null
+    },
+    {
+      "workflow": "wf-10",
+      "defective": true,
+      "type": "B",
+      "step": 3,
+      "visibility": "visible_in_draft",
+      "seeded_change": "Swapped the ReadOnlyAccess permission set for AdministratorAccess.",
+      "hidden_context": null,
+      "note": null
+    },
+    {
+      "workflow": "wf-11",
+      "defective": false,
+      "type": null,
+      "step": null,
+      "visibility": null,
+      "seeded_change": null,
+      "hidden_context": null,
+      "note": null
+    },
+    {
+      "workflow": "wf-12",
+      "defective": true,
+      "type": "B",
+      "step": 3,
+      "visibility": "needs_connected_system",
+      "seeded_change": "No change to the draft text. The risk sits in the connected directory, not on the page.",
+      "hidden_context": "In the connected Okta tenant the group platform-oncall is nested inside prod-admins, so members inherit production admin rights. The draft shows only the group name.",
+      "note": null
+    },
+    {
+      "workflow": "wf-13",
+      "defective": true,
+      "type": "A",
+      "step": 3,
+      "visibility": "visible_in_draft",
+      "seeded_change": "Replaced the Finance Manager approval with a courtesy notification.",
+      "hidden_context": null,
+      "note": null
+    },
+    {
+      "workflow": "wf-14",
+      "defective": false,
+      "type": null,
+      "step": null,
+      "visibility": null,
+      "seeded_change": null,
+      "hidden_context": null,
+      "note": null
+    },
+    {
+      "workflow": "wf-15",
+      "defective": true,
+      "type": "B",
+      "step": 4,
+      "visibility": "visible_in_draft",
+      "seeded_change": "Widened Write on one repository to Admin on every repository.",
+      "hidden_context": null,
+      "note": null
+    },
+    {
+      "workflow": "wf-16",
+      "defective": false,
+      "type": null,
+      "step": null,
+      "visibility": null,
+      "seeded_change": null,
+      "hidden_context": null,
+      "note": null
+    },
+    {
+      "workflow": "wf-17",
+      "defective": true,
+      "type": "A",
+      "step": 2,
+      "visibility": "needs_connected_system",
+      "seeded_change": "Deleted the AP Manager approval step.",
+      "hidden_context": "PayBridge is the vendor payments portal and moves money, so it is a finance system. The reviewer's system inventory does not list it, and the draft shows only the product name.",
+      "note": null
+    },
+    {
+      "workflow": "wf-18",
+      "defective": true,
+      "type": "B",
+      "step": 3,
+      "visibility": "visible_in_draft",
+      "seeded_change": "Widened the Developers role on one project to Administrators on all projects.",
+      "hidden_context": null,
+      "note": null
+    },
+    {
+      "workflow": "wf-19",
+      "defective": true,
+      "type": "B",
+      "step": 3,
+      "visibility": "needs_connected_system",
+      "seeded_change": "No change to the draft text. The risk sits in the connected expense policy, not on the page.",
+      "hidden_context": "In the connected Expensify policy the custom role Auditor-Plus includes the Manage Policy permission, which is policy-admin. The draft shows only the role name.",
+      "note": null
+    },
+    {
+      "workflow": "wf-20",
+      "defective": false,
+      "type": null,
+      "step": null,
+      "visibility": null,
+      "seeded_change": null,
+      "hidden_context": null,
+      "note": "Clean. Okta's Read-only Administrator role can view logs and reports but change nothing. The scope is narrower than admin even though the word appears. A keyword rule cannot tell."
+    },
+    {
+      "workflow": "wf-21",
+      "defective": true,
+      "type": "A",
+      "step": 3,
+      "visibility": "visible_in_draft",
+      "seeded_change": "Replaced the Payroll Manager approval with a courtesy notification.",
+      "hidden_context": null,
+      "note": null
+    },
+    {
+      "workflow": "wf-22",
+      "defective": false,
+      "type": null,
+      "step": null,
+      "visibility": null,
+      "seeded_change": null,
+      "hidden_context": null,
+      "note": null
+    },
+    {
+      "workflow": "wf-23",
+      "defective": false,
+      "type": null,
+      "step": null,
+      "visibility": null,
+      "seeded_change": null,
+      "hidden_context": null,
+      "note": null
+    },
+    {
+      "workflow": "wf-24",
+      "defective": false,
+      "type": null,
+      "step": null,
+      "visibility": null,
+      "seeded_change": null,
+      "hidden_context": null,
+      "note": null
+    }
+  ]
+}

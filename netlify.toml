@@ -1,0 +1,17 @@
+[build]
+  command = "node scripts/build.mjs"
+  publish = "dist"
+
+# Static site, no functions, no API keys. The CSP below makes the browser itself refuse any
+# request that is not to this same origin, so the page cannot call a model even by accident.
+[[headers]]
+  for = "/*"
+  [headers.values]
+    Content-Security-Policy = "default-src 'none'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'self'; base-uri 'none'; form-action 'none'; frame-ancestors 'none'"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "no-referrer"
+
+[[headers]]
+  for = "/data/*"
+  [headers.values]
+    Cache-Control = "public, max-age=300"

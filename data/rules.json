@@ -1,0 +1,32 @@
+{
+  "version": 1,
+  "note": "Rules are matched on system names and scope text in the draft only. The reviewer has no view into the connected systems.",
+  "system_classes": {
+    "identity": ["Okta", "Google Workspace", "Microsoft Entra ID", "AWS IAM Identity Center"],
+    "finance": ["NetSuite", "Coupa", "Expensify", "CorpCard Portal", "Payroll Portal"]
+  },
+  "rules": [
+    {
+      "id": "A",
+      "name": "Write without prior approval",
+      "text": "A write action on an identity or finance system needs an approval step, with a named approver, earlier in the workflow."
+    },
+    {
+      "id": "B",
+      "name": "Scope not narrower than admin",
+      "text": "The permission scope of a write step must be narrower than admin. Admin, owner, root, full access, wildcard and organization-wide scopes are flagged."
+    }
+  ],
+  "admin_scope_patterns": [
+    "\\badmin",
+    "\\bowners?\\b",
+    "\\broot\\b",
+    "\\bsuper[- ]?user\\b",
+    "\\bfull (access|control)\\b",
+    "\\*",
+    "\\b(all|any|every) (repos|repositories|apps|applications|accounts|drives|projects|resources|users|vendors)\\b",
+    "\\b(org|organization|tenant|domain)[- ]?wide\\b",
+    "\\bglobal\\b"
+  ],
+  "negation_patterns": ["\\b(non|no|not|without|never)[- ]admin\\w*"]
+}

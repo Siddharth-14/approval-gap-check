@@ -1,0 +1,1293 @@
+{
+  "generator": {
+    "runtime": "Ollama (local)",
+    "ollama_version": "0.40.15",
+    "model": "qwen2.5:7b-instruct",
+    "temperature": 0,
+    "seed": 42,
+    "generated_at": "2026-11-21T13:58:06.651Z",
+    "seconds": 199
+  },
+  "drafts": [
+    {
+      "id": "wf-01",
+      "sop_id": "sop-01",
+      "title": "Laptop replacement (damaged device)",
+      "steps": [
+        {
+          "n": 1,
+          "kind": "read",
+          "action": "Look up asset in Jamf Pro",
+          "system": "Jamf Pro",
+          "approver": null,
+          "scope": "employee-laptop"
+        },
+        {
+          "n": 2,
+          "kind": "approval",
+          "action": "Manager approves replacement",
+          "system": "HelpDesk",
+          "approver": "Manager",
+          "scope": null
+        },
+        {
+          "n": 3,
+          "kind": "write",
+          "action": "Enroll new laptop in Jamf Pro",
+          "system": "Jamf Pro",
+          "approver": null,
+          "scope": "employee-laptop"
+        },
+        {
+          "n": 4,
+          "kind": "write",
+          "action": "Apply 'employee-laptop' profile",
+          "system": "Jamf Pro",
+          "approver": null,
+          "scope": "employee-laptop"
+        },
+        {
+          "n": 5,
+          "kind": "write",
+          "action": "Revoke old device trust in Okta",
+          "system": "Okta",
+          "approver": null,
+          "scope": "employee-laptop"
+        },
+        {
+          "n": 6,
+          "kind": "write",
+          "action": "Wipe old laptop remotely",
+          "system": "Jamf Pro",
+          "approver": null,
+          "scope": "employee-laptop"
+        },
+        {
+          "n": 7,
+          "kind": "write",
+          "action": "Mark asset as returned",
+          "system": "HelpDesk",
+          "approver": null,
+          "scope": null
+        },
+        {
+          "n": 8,
+          "kind": "notify",
+          "action": "Notify requester to collect new laptop",
+          "system": "HelpDesk",
+          "approver": null,
+          "scope": null
+        }
+      ],
+      "_gen": {
+        "attempts": 1,
+        "eval_count": 328,
+        "total_duration_ms": 13460
+      }
+    },
+    {
+      "id": "wf-02",
+      "sop_id": "sop-02",
+      "title": "New hire standard access bundle",
+      "steps": [
+        {
+          "n": 1,
+          "kind": "read",
+          "action": "Read department's standard bundle",
+          "system": "Google Workspace",
+          "approver": null,
+          "scope": "read-only"
+        },
+        {
+          "n": 2,
+          "kind": "approval",
+          "action": "Hiring manager approves bundle",
+          "system": "HelpDesk",
+          "approver": "Hiring Manager",
+          "scope": null
+        },
+        {
+          "n": 3,
+          "kind": "write",
+          "action": "Create Google Workspace account",
+          "system": "Google Workspace",
+          "approver": null,
+          "scope": "Standard user"
+        },
+        {
+          "n": 4,
+          "kind": "write",
+          "action": "Add user to Okta groups",
+          "system": "Okta",
+          "approver": null,
+          "scope": "all-staff, dept-members"
+        },
+        {
+          "n": 5,
+          "kind": "write",
+          "action": "Invite user to Slack",
+          "system": "Slack",
+          "approver": null,
+          "scope": "Member"
+        },
+        {
+          "n": 6,
+          "kind": "notify",
+          "action": "Send day-one checklist",
+          "system": "HelpDesk",
+          "approver": null,
+          "scope": null
+        }
+      ],
+      "_gen": {
+        "attempts": 1,
+        "eval_count": 239,
+        "total_duration_ms": 9683
+      }
+    },
+    {
+      "id": "wf-03",
+      "sop_id": "sop-03",
+      "title": "MFA reset (lost phone)",
+      "steps": [
+        {
+          "n": 1,
+          "kind": "read",
+          "action": "Verify employee identity via video call",
+          "system": "HelpDesk",
+          "approver": null,
+          "scope": "read-only"
+        },
+        {
+          "n": 2,
+          "kind": "approval",
+          "action": "Manager confirms request",
+          "system": "HelpDesk",
+          "approver": "Manager",
+          "scope": null
+        },
+        {
+          "n": 3,
+          "kind": "write",
+          "action": "Reset all MFA factors for user in Okta",
+          "system": "Okta",
+          "approver": null,
+          "scope": "user"
+        },
+        {
+          "n": 4,
+          "kind": "write",
+          "action": "Set account to require new factor enrollment",
+          "system": "Okta",
+          "approver": null,
+          "scope": "user"
+        },
+        {
+          "n": 5,
+          "kind": "notify",
+          "action": "Confirm user enrolled new factor, close ticket, email employee",
+          "system": "HelpDesk",
+          "approver": null,
+          "scope": null
+        }
+      ],
+      "_gen": {
+        "attempts": 1,
+        "eval_count": 208,
+        "total_duration_ms": 8060
+      }
+    },
+    {
+      "id": "wf-04",
+      "sop_id": "sop-04",
+      "title": "Shared mailbox access",
+      "steps": [
+        {
+          "n": 1,
+          "kind": "read",
+          "action": "Look up mailbox owner and delegate group in Google Workspace",
+          "system": "Google Workspace",
+          "approver": null,
+          "scope": null
+        },
+        {
+          "n": 2,
+          "kind": "write",
+          "action": "Add requester to mbx-support-delegates group as Member",
+          "system": "Google Workspace",
+          "approver": null,
+          "scope": "mbx-support-delegates"
+        },
+        {
+          "n": 3,
+          "kind": "approval",
+          "action": "Mailbox owner approves access",
+          "system": "HelpDesk",
+          "approver": "Mailbox Owner",
+          "scope": null
+        },
+        {
+          "n": 4,
+          "kind": "notify",
+          "action": "Notify requester and owner of access grant",
+          "system": "HelpDesk",
+          "approver": null,
+          "scope": null
+        },
+        {
+          "n": 5,
+          "kind": "notify",
+          "action": "Record access grant for quarterly review",
+          "system": "HelpDesk",
+          "approver": null,
+          "scope": null
+        }
+      ],
+      "_gen": {
+        "attempts": 1,
+        "eval_count": 215,
+        "total_duration_ms": 8783
+      }
+    },
+    {
+      "id": "wf-05",
+      "sop_id": "sop-05",
+      "title": "Design tool license (Figma Editor seat)",
+      "steps": [
+        {
+          "n": 1,
+          "kind": "read",
+          "action": "Check free Figma seats",
+          "system": "Figma",
+          "approver": null,
+          "scope": "read-only"
+        },
+        {
+          "n": 2,
+          "kind": "approval",
+          "action": "Manager approves seat request",
+          "system": "HelpDesk",
+          "approver": "Manager",
+          "scope": null
+        },
+        {
+          "n": 3,
+          "kind": "write",
+          "action": "Assign Okta application 'Figma'",
+          "system": "Okta",
+          "approver": null,
+          "scope": "Figma"
+        },
+        {
+          "n": 4,
+          "kind": "write",
+          "action": "Set Figma role to 'Editor'",
+          "system": "Figma",
+          "approver": null,
+          "scope": "Editor"
+        },
+        {
+          "n": 5,
+          "kind": "notify",
+          "action": "Notify requester and manager",
+          "system": "HelpDesk",
+          "approver": null,
+          "scope": null
+        }
+      ],
+      "_gen": {
+        "attempts": 1,
+        "eval_count": 199,
+        "total_duration_ms": 7829
+      }
+    },
+    {
+      "id": "wf-06",
+      "sop_id": "sop-06",
+      "title": "Employee offboarding (last day)",
+      "steps": [
+        {
+          "n": 1,
+          "kind": "read",
+          "action": "Review offboarding ticket details",
+          "system": "HelpDesk",
+          "approver": null,
+          "scope": null
+        },
+        {
+          "n": 2,
+          "kind": "approval",
+          "action": "Approve offboarding with HR and manager",
+          "system": "HelpDesk",
+          "approver": "HR, manager",
+          "scope": null
+        },
+        {
+          "n": 3,
+          "kind": "write",
+          "action": "Deactivate user in Okta",
+          "system": "Okta",
+          "approver": null,
+          "scope": "user"
+        },
+        {
+          "n": 4,
+          "kind": "write",
+          "action": "Suspend Google Workspace account",
+          "system": "Google Workspace",
+          "approver": null,
+          "scope": "user"
+        },
+        {
+          "n": 5,
+          "kind": "write",
+          "action": "Transfer Drive ownership to manager",
+          "system": "Google Workspace",
+          "approver": null,
+          "scope": "user"
+        },
+        {
+          "n": 6,
+          "kind": "write",
+          "action": "Remove user from GitHub organization",
+          "system": "GitHub",
+          "approver": null,
+          "scope": "user"
+        },
+        {
+          "n": 7,
+          "kind": "write",
+          "action": "Remove user from Slack",
+          "system": "Slack",
+          "approver": null,
+          "scope": "user"
+        },
+        {
+          "n": 8,
+          "kind": "write",
+          "action": "Lock laptop through Jamf Pro",
+          "system": "Jamf Pro",
+          "approver": null,
+          "scope": "user"
+        },
+        {
+          "n": 9,
+          "kind": "write",
+          "action": "Create return label for laptop",
+          "system": "Jamf Pro",
+          "approver": null,
+          "scope": "user"
+        },
+        {
+          "n": 10,
+          "kind": "write",
+          "action": "Reassign pending Expensify reports to manager",
+          "system": "Expensify",
+          "approver": null,
+          "scope": "user"
+        },
+        {
+          "n": 11,
+          "kind": "notify",
+          "action": "Notify HR and manager offboarding complete",
+          "system": "HelpDesk",
+          "approver": null,
+          "scope": null
+        }
+      ],
+      "_gen": {
+        "attempts": 1,
+        "eval_count": 431,
+        "total_duration_ms": 16143
+      }
+    },
+    {
+      "id": "wf-07",
+      "sop_id": "sop-07",
+      "title": "Forgotten password or account lockout",
+      "steps": [
+        {
+          "n": 1,
+          "kind": "read",
+          "action": "Verify employee identity",
+          "system": "HelpDesk",
+          "approver": null,
+          "scope": "read-only"
+        },
+        {
+          "n": 2,
+          "kind": "write",
+          "action": "Reset password or clear lockout",
+          "system": "Okta",
+          "approver": null,
+          "scope": "user"
+        },
+        {
+          "n": 3,
+          "kind": "notify",
+          "action": "Inform employee of result",
+          "system": "HelpDesk",
+          "approver": null,
+          "scope": null
+        },
+        {
+          "n": 4,
+          "kind": "notify",
+          "action": "Close ticket",
+          "system": "HelpDesk",
+          "approver": null,
+          "scope": null
+        }
+      ],
+      "_gen": {
+        "attempts": 1,
+        "eval_count": 154,
+        "total_duration_ms": 6040
+      }
+    },
+    {
+      "id": "wf-08",
+      "sop_id": "sop-08",
+      "title": "NetSuite role request (AP Clerk)",
+      "steps": [
+        {
+          "n": 1,
+          "kind": "read",
+          "action": "Look up user's current NetSuite roles",
+          "system": "NetSuite",
+          "approver": null,
+          "scope": "read-only"
+        },
+        {
+          "n": 2,
+          "kind": "approval",
+          "action": "Finance Controller approves AP Clerk role",
+          "system": "HelpDesk",
+          "approver": "Finance Controller",
+          "scope": null
+        },
+        {
+          "n": 3,
+          "kind": "write",
+          "action": "Assign AP Clerk role to user",
+          "system": "NetSuite",
+          "approver": null,
+          "scope": "AP Clerk"
+        },
+        {
+          "n": 4,
+          "kind": "write",
+          "action": "Limit AP Clerk role to user's home subsidiary",
+          "system": "NetSuite",
+          "approver": null,
+          "scope": "user's home subsidiary"
+        },
+        {
+          "n": 5,
+          "kind": "notify",
+          "action": "Notify user and Finance Controller",
+          "system": "HelpDesk",
+          "approver": null,
+          "scope": null
+        },
+        {
+          "n": 6,
+          "kind": "notify",
+          "action": "Add grant to quarterly access review list",
+          "system": "HelpDesk",
+          "approver": null,
+          "scope": null
+        }
+      ],
+      "_gen": {
+        "attempts": 1,
+        "eval_count": 249,
+        "total_duration_ms": 9347
+      }
+    },
+    {
+      "id": "wf-09",
+      "sop_id": "sop-09",
+      "title": "Developer tool install (IDE)",
+      "steps": [
+        {
+          "n": 1,
+          "kind": "read",
+          "action": "Check remaining licenses in Jamf Pro",
+          "system": "Jamf Pro",
+          "approver": null,
+          "scope": "read-only"
+        },
+        {
+          "n": 2,
+          "kind": "approval",
+          "action": "Manager approves IntelliJ IDEA installation",
+          "system": "HelpDesk",
+          "approver": "Manager",
+          "scope": null
+        },
+        {
+          "n": 3,
+          "kind": "write",
+          "action": "Scope IntelliJ IDEA policy to requester's device",
+          "system": "Jamf Pro",
+          "approver": null,
+          "scope": "requester's device"
+        },
+        {
+          "n": 4,
+          "kind": "write",
+          "action": "Confirm install in Jamf Pro inventory",
+          "system": "Jamf Pro",
+          "approver": null,
+          "scope": "requester's device"
+        },
+        {
+          "n": 5,
+          "kind": "notify",
+          "action": "Close ticket",
+          "system": "HelpDesk",
+          "approver": null,
+          "scope": null
+        }
+      ],
+      "_gen": {
+        "attempts": 1,
+        "eval_count": 209,
+        "total_duration_ms": 7821
+      }
+    },
+    {
+      "id": "wf-10",
+      "sop_id": "sop-10",
+      "title": "AWS sandbox read-only access",
+      "steps": [
+        {
+          "n": 1,
+          "kind": "read",
+          "action": "Review user's current assignments",
+          "system": "AWS IAM Identity Center",
+          "approver": null,
+          "scope": null
+        },
+        {
+          "n": 2,
+          "kind": "approval",
+          "action": "Manager and Cloud Security on-call approve",
+          "system": "HelpDesk",
+          "approver": "Manager, Cloud Security on-call",
+          "scope": null
+        },
+        {
+          "n": 3,
+          "kind": "write",
+          "action": "Assign 'ReadOnlyAccess' permission set",
+          "system": "AWS IAM Identity Center",
+          "approver": null,
+          "scope": "ReadOnlyAccess"
+        },
+        {
+          "n": 4,
+          "kind": "write",
+          "action": "Set 4 hour session duration",
+          "system": "AWS IAM Identity Center",
+          "approver": null,
+          "scope": "ReadOnlyAccess"
+        },
+        {
+          "n": 5,
+          "kind": "notify",
+          "action": "Notify requester and set 30 day review reminder",
+          "system": "HelpDesk",
+          "approver": null,
+          "scope": null
+        }
+      ],
+      "_gen": {
+        "attempts": 1,
+        "eval_count": 218,
+        "total_duration_ms": 8206
+      }
+    },
+    {
+      "id": "wf-11",
+      "sop_id": "sop-11",
+      "title": "Contractor onboarding (time-boxed)",
+      "steps": [
+        {
+          "n": 1,
+          "kind": "read",
+          "action": "Check NDA attachment",
+          "system": "HelpDesk",
+          "approver": null,
+          "scope": "read-only"
+        },
+        {
+          "n": 2,
+          "kind": "approval",
+          "action": "Sponsor and Security team approve",
+          "system": "HelpDesk",
+          "approver": "Sponsor, Security Team",
+          "scope": null
+        },
+        {
+          "n": 3,
+          "kind": "write",
+          "action": "Create Google Workspace account",
+          "system": "Google Workspace",
+          "approver": null,
+          "scope": "Contractors"
+        },
+        {
+          "n": 4,
+          "kind": "write",
+          "action": "Add to Okta contractors group",
+          "system": "Okta",
+          "approver": null,
+          "scope": "contractors"
+        },
+        {
+          "n": 5,
+          "kind": "write",
+          "action": "Add to GitHub repository as outside collaborator",
+          "system": "GitHub",
+          "approver": null,
+          "scope": "Read"
+        },
+        {
+          "n": 6,
+          "kind": "notify",
+          "action": "Send welcome email to sponsor",
+          "system": "HelpDesk",
+          "approver": null,
+          "scope": null
+        }
+      ],
+      "_gen": {
+        "attempts": 1,
+        "eval_count": 241,
+        "total_duration_ms": 9234
+      }
+    },
+    {
+      "id": "wf-12",
+      "sop_id": "sop-12",
+      "title": "On-call group membership",
+      "steps": [
+        {
+          "n": 1,
+          "kind": "read",
+          "action": "Read group description and current members in Okta",
+          "system": "Okta",
+          "approver": null,
+          "scope": "read-only"
+        },
+        {
+          "n": 2,
+          "kind": "approval",
+          "action": "Approve engineer addition by Head of Platform",
+          "system": "HelpDesk",
+          "approver": "Head of Platform",
+          "scope": null
+        },
+        {
+          "n": 3,
+          "kind": "write",
+          "action": "Add engineer to Okta group 'platform-oncall'",
+          "system": "Okta",
+          "approver": null,
+          "scope": "platform-oncall"
+        },
+        {
+          "n": 4,
+          "kind": "notify",
+          "action": "Notify engineer and group owner",
+          "system": "HelpDesk",
+          "approver": null,
+          "scope": null
+        }
+      ],
+      "_gen": {
+        "attempts": 1,
+        "eval_count": 175,
+        "total_duration_ms": 6581
+      }
+    },
+    {
+      "id": "wf-13",
+      "sop_id": "sop-13",
+      "title": "Corporate card limit increase",
+      "steps": [
+        {
+          "n": 1,
+          "kind": "read",
+          "action": "Read cardholder's current limit and spend",
+          "system": "CorpCard Portal",
+          "approver": null,
+          "scope": "read-only"
+        },
+        {
+          "n": 2,
+          "kind": "approval",
+          "action": "Finance Manager approves limit increase",
+          "system": "HelpDesk",
+          "approver": "Finance Manager",
+          "scope": null
+        },
+        {
+          "n": 3,
+          "kind": "write",
+          "action": "Raise monthly limit to approved amount",
+          "system": "CorpCard Portal",
+          "approver": null,
+          "scope": "cardholder's role"
+        },
+        {
+          "n": 4,
+          "kind": "write",
+          "action": "Set limit to revert after 30 days",
+          "system": "CorpCard Portal",
+          "approver": null,
+          "scope": "cardholder's role"
+        },
+        {
+          "n": 5,
+          "kind": "notify",
+          "action": "Notify cardholder and Finance Manager",
+          "system": "HelpDesk",
+          "approver": null,
+          "scope": null
+        }
+      ],
+      "_gen": {
+        "attempts": 1,
+        "eval_count": 215,
+        "total_duration_ms": 8176
+      }
+    },
+    {
+      "id": "wf-14",
+      "sop_id": "sop-14",
+      "title": "Private Slack channel access",
+      "steps": [
+        {
+          "n": 1,
+          "kind": "read",
+          "action": "Look up channel owner in Slack",
+          "system": "Slack",
+          "approver": null,
+          "scope": "read-only"
+        },
+        {
+          "n": 2,
+          "kind": "approval",
+          "action": "Channel owner approves request",
+          "system": "HelpDesk",
+          "approver": "Channel Owner",
+          "scope": null
+        },
+        {
+          "n": 3,
+          "kind": "write",
+          "action": "Add requester to private channel",
+          "system": "Slack",
+          "approver": null,
+          "scope": "regular member"
+        },
+        {
+          "n": 4,
+          "kind": "notify",
+          "action": "Notify requester and channel owner",
+          "system": "HelpDesk",
+          "approver": null,
+          "scope": null
+        }
+      ],
+      "_gen": {
+        "attempts": 1,
+        "eval_count": 161,
+        "total_duration_ms": 6139
+      }
+    },
+    {
+      "id": "wf-15",
+      "sop_id": "sop-15",
+      "title": "Repository write access (GitHub)",
+      "steps": [
+        {
+          "n": 1,
+          "kind": "read",
+          "action": "Review repository 'payments-api' permissions",
+          "system": "GitHub",
+          "approver": null,
+          "scope": "read-only"
+        },
+        {
+          "n": 2,
+          "kind": "approval",
+          "action": "Repository owner approves request",
+          "system": "HelpDesk",
+          "approver": "repository owner",
+          "scope": null
+        },
+        {
+          "n": 3,
+          "kind": "write",
+          "action": "Add requester to 'payments-api-writers' team",
+          "system": "GitHub",
+          "approver": null,
+          "scope": "payments-api-writers"
+        },
+        {
+          "n": 4,
+          "kind": "write",
+          "action": "Grant 'Write' permission on 'payments-api'",
+          "system": "GitHub",
+          "approver": null,
+          "scope": "payments-api"
+        },
+        {
+          "n": 5,
+          "kind": "notify",
+          "action": "Notify requester and repository owner",
+          "system": "HelpDesk",
+          "approver": null,
+          "scope": null
+        }
+      ],
+      "_gen": {
+        "attempts": 1,
+        "eval_count": 208,
+        "total_duration_ms": 7731
+      }
+    },
+    {
+      "id": "wf-16",
+      "sop_id": "sop-16",
+      "title": "Lost hardware security key",
+      "steps": [
+        {
+          "n": 1,
+          "kind": "read",
+          "action": "List user's enrolled factors in Okta",
+          "system": "Okta",
+          "approver": null,
+          "scope": "read-only"
+        },
+        {
+          "n": 2,
+          "kind": "approval",
+          "action": "Security on-call approves replacement, copies manager",
+          "system": "HelpDesk",
+          "approver": "Security on-call",
+          "scope": null
+        },
+        {
+          "n": 3,
+          "kind": "write",
+          "action": "Revoke lost key's FIDO2 factor in Okta",
+          "system": "Okta",
+          "approver": null,
+          "scope": "FIDO2 factor"
+        },
+        {
+          "n": 4,
+          "kind": "write",
+          "action": "Ship replacement key, record serial number in HelpDesk",
+          "system": "HelpDesk",
+          "approver": null,
+          "scope": "asset record"
+        },
+        {
+          "n": 5,
+          "kind": "notify",
+          "action": "Close ticket and notify employee after new key enrollment",
+          "system": "HelpDesk",
+          "approver": null,
+          "scope": null
+        }
+      ],
+      "_gen": {
+        "attempts": 1,
+        "eval_count": 224,
+        "total_duration_ms": 8296
+      }
+    },
+    {
+      "id": "wf-17",
+      "sop_id": "sop-17",
+      "title": "Vendor remittance profile change",
+      "steps": [
+        {
+          "n": 1,
+          "kind": "read",
+          "action": "Verify vendor details in PayBridge",
+          "system": "PayBridge",
+          "approver": null,
+          "scope": "read-only"
+        },
+        {
+          "n": 2,
+          "kind": "approval",
+          "action": "AP Manager approves vendor remittance change",
+          "system": "HelpDesk",
+          "approver": "AP Manager",
+          "scope": null
+        },
+        {
+          "n": 3,
+          "kind": "write",
+          "action": "Update vendor remittance profile in PayBridge",
+          "system": "PayBridge",
+          "approver": null,
+          "scope": "vendor's remittance profile"
+        },
+        {
+          "n": 4,
+          "kind": "write",
+          "action": "Place 48 hour payment hold on vendor",
+          "system": "PayBridge",
+          "approver": null,
+          "scope": "vendor's payment hold"
+        },
+        {
+          "n": 5,
+          "kind": "notify",
+          "action": "Notify AP Manager of changes",
+          "system": "HelpDesk",
+          "approver": null,
+          "scope": null
+        }
+      ],
+      "_gen": {
+        "attempts": 1,
+        "eval_count": 214,
+        "total_duration_ms": 8111
+      }
+    },
+    {
+      "id": "wf-18",
+      "sop_id": "sop-18",
+      "title": "Jira project role",
+      "steps": [
+        {
+          "n": 1,
+          "kind": "read",
+          "action": "Check user's current roles on ATLAS",
+          "system": "HelpDesk",
+          "approver": null,
+          "scope": "read-only"
+        },
+        {
+          "n": 2,
+          "kind": "write",
+          "action": "Add user to Developers role on ATLAS",
+          "system": "Jira",
+          "approver": null,
+          "scope": "Developers"
+        },
+        {
+          "n": 3,
+          "kind": "approval",
+          "action": "Project lead approves role change",
+          "system": "HelpDesk",
+          "approver": "Project Lead",
+          "scope": null
+        },
+        {
+          "n": 4,
+          "kind": "notify",
+          "action": "Notify requester and project lead",
+          "system": "HelpDesk",
+          "approver": null,
+          "scope": null
+        }
+      ],
+      "_gen": {
+        "attempts": 1,
+        "eval_count": 167,
+        "total_duration_ms": 6422
+      }
+    },
+    {
+      "id": "wf-19",
+      "sop_id": "sop-19",
+      "title": "Expense policy reviewer role",
+      "steps": [
+        {
+          "n": 1,
+          "kind": "read",
+          "action": "Review 'Corporate' roles in Expensify",
+          "system": "Expensify",
+          "approver": null,
+          "scope": "read-only"
+        },
+        {
+          "n": 2,
+          "kind": "approval",
+          "action": "Finance Manager approves 'Auditor-Plus' role",
+          "system": "HelpDesk",
+          "approver": "Finance Manager",
+          "scope": null
+        },
+        {
+          "n": 3,
+          "kind": "write",
+          "action": "Assign 'Auditor-Plus' role to user",
+          "system": "Expensify",
+          "approver": null,
+          "scope": "Auditor-Plus on Corporate expense policy"
+        },
+        {
+          "n": 4,
+          "kind": "notify",
+          "action": "Notify user and Finance Manager",
+          "system": "HelpDesk",
+          "approver": null,
+          "scope": null
+        }
+      ],
+      "_gen": {
+        "attempts": 1,
+        "eval_count": 183,
+        "total_duration_ms": 7966
+      }
+    },
+    {
+      "id": "wf-20",
+      "sop_id": "sop-20",
+      "title": "External auditor read-only log access",
+      "steps": [
+        {
+          "n": 1,
+          "kind": "read",
+          "action": "Check auditor's guest account exists",
+          "system": "Okta",
+          "approver": null,
+          "scope": "read-only"
+        },
+        {
+          "n": 2,
+          "kind": "approval",
+          "action": "CISO delegate approves auditor access",
+          "system": "HelpDesk",
+          "approver": "CISO Delegate",
+          "scope": null
+        },
+        {
+          "n": 3,
+          "kind": "write",
+          "action": "Assign Read-only Administrator role",
+          "system": "Okta",
+          "approver": null,
+          "scope": "Read-only Administrator"
+        },
+        {
+          "n": 4,
+          "kind": "write",
+          "action": "Set role to expire at end of audit window",
+          "system": "Okta",
+          "approver": null,
+          "scope": null
+        },
+        {
+          "n": 5,
+          "kind": "notify",
+          "action": "Notify auditor and security lead",
+          "system": "HelpDesk",
+          "approver": null,
+          "scope": null
+        }
+      ],
+      "_gen": {
+        "attempts": 1,
+        "eval_count": 206,
+        "total_duration_ms": 8341
+      }
+    },
+    {
+      "id": "wf-21",
+      "sop_id": "sop-21",
+      "title": "Payroll direct-deposit change",
+      "steps": [
+        {
+          "n": 1,
+          "kind": "read",
+          "action": "Verify employee details in HR record",
+          "system": "HelpDesk",
+          "approver": null,
+          "scope": "read-only"
+        },
+        {
+          "n": 2,
+          "kind": "approval",
+          "action": "Approve change by Payroll Manager",
+          "system": "HelpDesk",
+          "approver": "Payroll Manager",
+          "scope": null
+        },
+        {
+          "n": 3,
+          "kind": "write",
+          "action": "Update direct-deposit account in Payroll Portal",
+          "system": "Payroll Portal",
+          "approver": null,
+          "scope": "employee"
+        },
+        {
+          "n": 4,
+          "kind": "notify",
+          "action": "Send confirmation to employee and Payroll Manager",
+          "system": "HelpDesk",
+          "approver": null,
+          "scope": null
+        }
+      ],
+      "_gen": {
+        "attempts": 1,
+        "eval_count": 172,
+        "total_duration_ms": 6497
+      }
+    },
+    {
+      "id": "wf-22",
+      "sop_id": "sop-22",
+      "title": "Purchase order for a license renewal",
+      "steps": [
+        {
+          "n": 1,
+          "kind": "read",
+          "action": "Read budget line in Coupa",
+          "system": "Coupa",
+          "approver": null,
+          "scope": "read-only"
+        },
+        {
+          "n": 2,
+          "kind": "approval",
+          "action": "Budget owner approves purchase in ticket",
+          "system": "HelpDesk",
+          "approver": "Budget Owner",
+          "scope": null
+        },
+        {
+          "n": 3,
+          "kind": "write",
+          "action": "Create purchase order in Coupa",
+          "system": "Coupa",
+          "approver": null,
+          "scope": null
+        },
+        {
+          "n": 4,
+          "kind": "write",
+          "action": "Attach quote to purchase order",
+          "system": "Coupa",
+          "approver": null,
+          "scope": null
+        },
+        {
+          "n": 5,
+          "kind": "notify",
+          "action": "Send purchase order number to requester",
+          "system": "HelpDesk",
+          "approver": null,
+          "scope": null
+        }
+      ],
+      "_gen": {
+        "attempts": 1,
+        "eval_count": 201,
+        "total_duration_ms": 7613
+      }
+    },
+    {
+      "id": "wf-23",
+      "sop_id": "sop-23",
+      "title": "Email distribution list change",
+      "steps": [
+        {
+          "n": 1,
+          "kind": "read",
+          "action": "Look up list owner in Google Workspace",
+          "system": "Google Workspace",
+          "approver": null,
+          "scope": "read-only"
+        },
+        {
+          "n": 2,
+          "kind": "approval",
+          "action": "List owner approves in ticket",
+          "system": "HelpDesk",
+          "approver": "list owner",
+          "scope": null
+        },
+        {
+          "n": 3,
+          "kind": "write",
+          "action": "Add employee to 'eng-announce' as Member",
+          "system": "Google Workspace",
+          "approver": null,
+          "scope": "eng-announce Member"
+        },
+        {
+          "n": 4,
+          "kind": "notify",
+          "action": "Notify employee and list owner",
+          "system": "HelpDesk",
+          "approver": null,
+          "scope": null
+        }
+      ],
+      "_gen": {
+        "attempts": 1,
+        "eval_count": 170,
+        "total_duration_ms": 6470
+      }
+    },
+    {
+      "id": "wf-24",
+      "sop_id": "sop-24",
+      "title": "Shared drive viewer access",
+      "steps": [
+        {
+          "n": 1,
+          "kind": "read",
+          "action": "Read drive owners in Google Workspace",
+          "system": "Google Workspace",
+          "approver": null,
+          "scope": "read-only"
+        },
+        {
+          "n": 2,
+          "kind": "approval",
+          "action": "Drive owner approves request",
+          "system": "HelpDesk",
+          "approver": "drive owner",
+          "scope": null
+        },
+        {
+          "n": 3,
+          "kind": "write",
+          "action": "Add user as Viewer to 'Marketing-Assets'",
+          "system": "Google Workspace",
+          "approver": null,
+          "scope": "Viewer"
+        },
+        {
+          "n": 4,
+          "kind": "notify",
+          "action": "Notify requester and drive owner",
+          "system": "HelpDesk",
+          "approver": null,
+          "scope": null
+        }
+      ],
+      "_gen": {
+        "attempts": 1,
+        "eval_count": 164,
+        "total_duration_ms": 6141
+      }
+    }
+  ]
+}
