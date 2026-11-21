@@ -325,8 +325,8 @@ mark { background: var(--mark); color: #17302b; padding: 0 2px; border-radius: 1
 
 .missed-list { display: grid; gap: 4px; margin: 8px 0 0; padding: 0; list-style: none; }
 .link-btn {
-  padding: 4px 0; background: none; border: 0; cursor: pointer; color: var(--stamp); font: 600 0.9375rem/1.3 var(--sans);
-  text-align: left; text-decoration: underline; text-underline-offset: 3px;
+  display: flex; align-items: center; min-height: 36px; padding: 4px 0; background: none; border: 0; cursor: pointer;
+  color: var(--stamp); font: 600 0.9375rem/1.3 var(--sans); text-align: left; text-decoration: underline; text-underline-offset: 3px;
 }
 
 /* ---------- footer ---------- */
@@ -350,5 +350,6 @@ mark { background: var(--mark); color: #17302b; padding: 0 2px; border-radius: 1
   .stats { gap: 8px; }
   .stat .sub { font-size: 0.75rem; }
   .row { min-height: 56px; }
-  .unit { width: 23px; height: 23px; }
+  .unit { width: 24px; height: 24px; }
+  .link-btn { min-height: 44px; }
 }

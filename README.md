@@ -27,7 +27,7 @@ A reviewer, human or automated, has to catch both without crying wolf on every d
 ## How it runs for $0
 
 - **Drafts and reasons:** a 7B model on a laptop through Ollama. No API, no key, no per-token cost.
-- **The site:** plain HTML, CSS and vanilla JS. Everything it shows is precomputed JSON. It makes 8 requests to its own origin and none to any model. A Content-Security-Policy header (`connect-src 'self'`) makes the browser refuse anything else.
+- **The site:** plain HTML, CSS and vanilla JS. Everything it shows is precomputed JSON. The page makes 8 requests, all to its own origin, and none to any model. A Content-Security-Policy header (`connect-src 'self'`) makes the browser refuse anything else; a test call to a model API from the live page was blocked. Netlify's free tier also injects one same-origin script (`/.netlify/scripts/hud`). Its inline parts are blocked by that same policy, which shows up as console errors and changes nothing on the page.
 - **Hosting:** Netlify Free ($0; the pricing page lists a 300 credit limit, and a production deploy costs 15 credits, so deploys are kept few). Code on GitHub Free.
 - No API keys exist anywhere in the repo.
 
